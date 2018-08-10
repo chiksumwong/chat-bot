@@ -13,4 +13,5 @@ protect_from_forgery with: :null_session
         uri - URI('http://localhost:3000/tomcat/rb')
         response = Net::HTTP.get(uri)
         render plain: response
+    end
 end
