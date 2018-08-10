@@ -1,6 +1,10 @@
 class TomcatController < ApplicationController
 protect_from_forgery with: :null_session
 
+    def eat
+        render plain: "Eat What ?"
+    end
+
     def webhook
         render plain: params
     end
