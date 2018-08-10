@@ -6,10 +6,10 @@ protect_from_forgery with: :null_session
     #Main Structure
     def webhook
         #Learn Speaking
-        reply_text = learn(received_text)
+        reply_text = learn(channel_id, received_text)
 
         #Keyword Reply
-        reply_text = keyword_reply(received_text) if reply_text.nil?
+        reply_text = keyword_reply(channel_id, received_text) if reply_text.nil?
 
         #Push
         reply_text = echo2(channel_id, received_text) if reply_text.nil?
@@ -36,7 +36,7 @@ protect_from_forgery with: :null_session
     end
 
     #Learn Speaking
-    def learn (received_text)
+    def learn (channel_id, received_text)
         return nil unless received_text[0..4] == '喵學說話;'
 
         received_text = received_text[5..-1]
@@ -48,18 +48,15 @@ protect_from_forgery with: :null_session
         keyword = received_text[0..semicolon_index-1]
         message = received_text[semicolon_index+1..-1]
 
-        KeywordMapping.create(keyword: keyword, message: message)
+        KeywordMapping.create(channel_id: channel_id, keyword: keyword, message: message)
         '喵~'
     end
 
     #Keyword Reply
-    def keyword_reply(received_text)
-        mapping = KeywordMapping.where(keyword: received_text).last
-        if mapping.nil?
-            nil
-        else
-            mapping.message
-        end        
+    def keyword_reply(channel_id, received_text)
+        message = KeywordMapping.where(channel_id: channel_id, keyword: received_text).last&.message
+        return message unless message.nil?
+        KeywordMapping.where(keyword: received_text).last&.message
     end
 
     #Channel ID
