@@ -67,3 +67,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #line
 gem 'line-bot-api'
+
+#devise
+gem 'devise'
