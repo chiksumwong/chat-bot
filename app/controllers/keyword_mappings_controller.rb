@@ -2,8 +2,6 @@ class KeywordMappingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_keyword_mapping, only: [:show, :edit, :update, :destroy]
 
-  protect_from_forgery prepend: trues
-
   # GET /keyword_mappings
   # GET /keyword_mappings.json
   def index
