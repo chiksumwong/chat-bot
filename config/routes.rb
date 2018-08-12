@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   post '/tomcat/webhook', to: 'tomcat#webhook'
 
   root to: 'home#index'
+
+  resources :push_messages, only: [:new, :create]
 end

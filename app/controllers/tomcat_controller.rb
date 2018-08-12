@@ -5,6 +5,9 @@ protect_from_forgery with: :null_session
 
     #Main Structure
     def webhook
+        #Record Channel
+        Channel.find_or_create_by(channel_id: channel_id)
+
         #Learn Speaking
         reply_text = learn(channel_id, received_text)
 
