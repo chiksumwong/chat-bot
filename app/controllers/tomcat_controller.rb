@@ -80,14 +80,9 @@ protect_from_forgery with: :null_session
         received_text = received_text[3..-1]
         items = []
 
-        spack = received_text.index(',')
+        items = received_text.split(" ")
 
-        #If ' ' not found
-        return nil if spack.nil?
-
-        items = received_text.split(",")
-
-        food = tiems.sample
+        tiems.sample
 
         return food + " 喵~"
 
