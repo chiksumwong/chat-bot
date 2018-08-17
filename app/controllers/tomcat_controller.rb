@@ -22,7 +22,7 @@ protect_from_forgery with: :null_session
         if received_text[0..2] == '食咩;'
 
         #Chosing
-        reply_text = chose(channel_id, received_text)
+        reply_text = chose(received_text)
 
         else
 
