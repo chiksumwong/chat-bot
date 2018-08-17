@@ -85,9 +85,11 @@ protect_from_forgery with: :null_session
         #If ' ' not found
         return nil if spack.nil?
 
-        items = received_text.split(" ").sample
+        items = received_text.split(" ")
 
-        items
+        food = tiems.sample
+
+        return food + " 喵~"
 
     end
 
