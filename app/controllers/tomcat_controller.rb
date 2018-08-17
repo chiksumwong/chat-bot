@@ -5,6 +5,7 @@ protect_from_forgery with: :null_session
 
     #Main Structure
     def webhook
+
         #line signature
         body = request.body.read
         signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -13,8 +14,17 @@ protect_from_forgery with: :null_session
             return
         end
 
+
         #Record Channel
         Channel.find_or_create_by(channel_id: channel_id)
+
+        
+        if received_text[0..2] == '食咩;'
+
+        #Chosing
+        reply_text = chose(channel_id, received_text)
+
+        else
 
         #Learn Speaking
         reply_text = learn(channel_id, received_text)
@@ -29,6 +39,8 @@ protect_from_forgery with: :null_session
         save_to_received(channel_id, received_text)
         save_to_reply(channel_id, reply_text)
         
+        end
+
         #Send Message to Line
         response = reply_to_line(reply_text)
         
@@ -61,6 +73,22 @@ protect_from_forgery with: :null_session
 
         KeywordMapping.create(channel_id: channel_id, keyword: keyword, message: message)
         '喵~'
+    end
+
+    #Chosing
+    def chose (received_text)
+        received_text = received_text[3..-1]
+        items = []
+
+        spack = received_text.index(' ')
+
+        #If ' ' not found
+        return nil if spack.nil?
+
+        items = received_text.split(" ").sample
+
+        items
+
     end
 
     #Keyword Reply
