@@ -5,6 +5,14 @@ protect_from_forgery with: :null_session
 
     #Main Structure
     def webhook
+        #line signature
+        body = request.body.read
+        signature = request.env['HTTP_X_LINE_SIGNATURE']
+        unless line.validate_signature(body, signature)
+            render plain: 'Bad Request', status:400
+            return
+        end
+
         #Record Channel
         Channel.find_or_create_by(channel_id: channel_id)
 
