@@ -16,7 +16,7 @@ protect_from_forgery with: :null_session
 
 
         #Record Channel
-        Channel.find_or_create_by(channel_id: channel_id)
+        # Channel.find_or_create_by(channel_id: channel_id)
 
         # if received_text[0..1] == '功能'
 
