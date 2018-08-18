@@ -81,7 +81,7 @@ protect_from_forgery with: :null_session
         text = received_text[3..-1]
         items = []
         items = text.split(" ")
-        food = tiems.sample
+        food = items.sample
         return '#{food} 喵~' 
     end
 
