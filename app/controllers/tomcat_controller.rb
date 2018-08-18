@@ -18,16 +18,16 @@ protect_from_forgery with: :null_session
         #Record Channel
         Channel.find_or_create_by(channel_id: channel_id)
 
-        if received_text[0..1] == '功能'
-            
-            '學說話, 推齊'
+        # if received_text[0..1] == '功能'
 
-        elsif received_text[0..2] == '食咩;'
+        #     '學說話, 推齊'
 
-        #Chosing
-        reply_text = chose(received_text)
+        # elsif received_text[0..2] == '食咩;'
 
-        else
+        # #Chosing
+        # reply_text = chose(received_text)
+
+        # else
 
         #Learn Speaking
         reply_text = learn(channel_id, received_text)
@@ -42,7 +42,7 @@ protect_from_forgery with: :null_session
         save_to_received(channel_id, received_text)
         save_to_reply(channel_id, reply_text)
         
-        end
+        # end
 
         #Send Message to Line
         response = reply_to_line(reply_text)
