@@ -82,7 +82,7 @@ protect_from_forgery with: :null_session
         items = []
         items = text.split(" ")
         food = items.sample
-        return '#{food} 喵~' 
+        return "#{food} 喵~"
     end
 
     #Keyword Reply
