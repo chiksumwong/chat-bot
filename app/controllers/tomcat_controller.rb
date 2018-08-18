@@ -78,10 +78,11 @@ protect_from_forgery with: :null_session
 
     #Chosing
     def chose (received_text)
-        received_text = received_text[3..-1]
+        text = received_text[3..-1]
         items = []
-        items = received_text.split(" ")
-        return tiems.sample + ' 喵~' 
+        items = text.split(" ")
+        food = tiems.sample
+        return '#{food} 喵~' 
     end
 
     #Keyword Reply
