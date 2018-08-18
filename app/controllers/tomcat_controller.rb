@@ -19,9 +19,7 @@ protect_from_forgery with: :null_session
         # Channel.find_or_create_by(channel_id: channel_id)
 
         if received_text[0..1] == '功能'
-
-            '學說話, 推齊'
-
+            reply_text = '學說話, 推齊'
         elsif received_text[0..2] == '食咩;'
 
         #Chosing
@@ -82,13 +80,8 @@ protect_from_forgery with: :null_session
     def chose (received_text)
         received_text = received_text[3..-1]
         items = []
-
         items = received_text.split(" ")
-
-        tiems.sample
-
-        return food + " 喵~"
-
+        return tiems.sample + ' 喵~' 
     end
 
     #Keyword Reply
